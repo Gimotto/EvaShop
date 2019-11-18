@@ -21,6 +21,9 @@
     <b-form-group label="Choose Size:" ref="formGroup">
         <div>
             <EDropdown v-model="form.sizeselected" :options="options" />
+            <div v-if="sizeSelectError">
+            <p style="color:red">Inserisci una taglia</p>
+            </div>
         </div>  
     </b-form-group>  
     <b-form-group label="Choose Quantity:">
@@ -138,8 +141,9 @@ clearForm(){
     },
 
 checkError(){
+    this.sizeSelectError = false
     this.counterError = 0;
-if(this.form.sizeselected == ""){
+if(this.form.sizeselected == "" || this.form.sizeselected == null){
     this.sizeSelectError = true
     this.counterError ++
 }
